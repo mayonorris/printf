@@ -11,9 +11,9 @@ int put_f(char *c)
 {
 	int count_char = 0;
 
-	if(c)
+	if (c)
 	{
-	for (count_char =0; c[count_char]!='\0'; count_char++)
+	for (count_char = 0; c[count_char] != '\0'; count_char++)
 	{
 	_putchar(c[count_char]);
 	}
