@@ -6,28 +6,34 @@
  */
 int _printf(const char *format, ...)
 {
-	int count_char = 0;
+	int count_char = 0, i, str_count;
 
 	va_list args;
 
 	va_start(args, format);
 
-	while (*format != '\0')
+
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (*format == '%')
-		{
-			format++;
-			count_char = format_identifier(format, args, count_char);
-			format++;
-		}
-		else
-		{
-			_putchar(*format);
-			count_char++;
-			format++;
-		}
+	if (format[i] != '%')
+	{
+	putchar(format[i]);
+	}
+	else if (format[i + 1] == 'c')
+	{
+		_putchar(va_arg(args, int));
+		i++;
+	} else if (format[i + 1] == 's')
+	{
+	str_count = put_f(va_arg(args, char*));
+			i++;
+			count_char += (str_count - 1);
+	} else if (format[i + 1] == '%')
+	{
+	_putchar('%');
+	}
+		count_char += 1;
 	}
 	va_end(args);
 	return (count_char);
 }
-
