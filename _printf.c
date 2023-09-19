@@ -7,19 +7,18 @@
 int _printf(const char *format, ...)
 {
 	int count_char = 0, i, str_count;
-
 	va_list args;
 
 	va_start(args, format);
-
-
+	if (!format || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 	for (i = 0; format[i] != '\0'; i++)
 	{
 	if (format[i] != '%')
 	{
 	putchar(format[i]);
 	}
-	else if (format[i + 1] == 'c')
+	else if (format[i] == '%' && format[i + 1] == 'c')
 	{
 		_putchar(va_arg(args, int));
 		i++;
