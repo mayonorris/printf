@@ -27,7 +27,11 @@ int _printf(const char *format, ...)
 	str_count = put_f(va_arg(args, char*));
 			i++;
 			count_char += (str_count - 1);
-	} else if (format[i + 1] == '%')
+	} else if (format[i + 1] == 'd')
+	{
+		_putchar(va_arg(args, int);
+			i++;
+	}else if (format[i + 1] == '%')
 	{
 	_putchar('%');
 	}
