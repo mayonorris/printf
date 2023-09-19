@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 			count_char += (str_count - 1);
 	} else if (format[i + 1] == 'd')
 	{
-		_putchar(va_arg(args, int);
+		put_f(va_arg(args, int));
 			i++;
 	}else if (format[i + 1] == '%')
 	{
