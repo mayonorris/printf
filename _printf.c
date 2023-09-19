@@ -7,39 +7,53 @@
  * @format: A string containing format specifiers.
  * Return: The number of characters that would be printed.
  */
-
-int _printf(const char *format, ...)
+int _printf(const char *format, ..)
 {
-	va_list args;
+	int num_of _char = 0;
 
-	va_start(args, format);
-	int count = 0;
-
-	for (int i = 0; i < strlen(format); i++)
+	va_list args_list;
+	if(format == NULL)
 	{
-		if (format[i] == '%')
+		return (-1);
+	}
+	va_start(args_list, format);
+	while(*format)
+	{
+		if(*format != '%')
 		{
-			switch (format[i + 1])
-			{
-				case 'c':
-					count += 1;
-					break;
-				case 's':
-					count += strlen(va_arg(args, char*));
-					break;
-				case '%':
-					count += 1;
-					break;
-				default:
-					/*Skip unsupported format specifiers*/
-					i++;
-			}
+			write(1,format,1);
+			num_of _char++;
 		}
 		else
 		{
-			count += 1;
+			format++;
+			if(*format == '\0')
+				break;
+			if(*format =='%')
+			{
+				write(1,format,1);
+				num_of _char++;
+			}
+			else if (*format == 'c')
+			{
+				char c = va_arg(args_list, int)
+
+				write (1, &c,1);
+				num_of _char++;
+			}
+			else if(*format == 's')
+			{
+				char *char_ar = va_arg(list_of_args, char*);
+				int len=0;
+				    while(char_ar[len] !='\0') 
+					    len++;
+				    write(1,char_ar,len);
+				    num_of _char += len;
+
+			}
 		}
+		format++
 	}
-	va_end(args);
-	return (count - 1);
+	va_end(args_list);
+	return (num_of _char );
 }
